@@ -3,39 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Maths Blog</title>
+    <title>Three.js Example</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to my Maths blog</h1>
-    </header>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Scene setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
 
-    <main>
-        <article>
-            <h2>Understanding Permutations: The Art of Arranging</h2>
-            <p class="date">Published on October 28, 2024</p>
-            <p>Permutations are a fundamental concept in mathematics, particularly in the field of combinatorics. They involve the arrangement of items in a specific order, and understanding permutations can help solve various problems in mathematics, computer science, and probability</p>
-            <a class="read-more" href="./permutations.html">Read More</a>
-        </article>
+        // Cube creation
+        const geometry = new THREE.BoxGeometry();
+        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
 
-        <article>
-            <h2>Exploring Combinatorics: The Mathematics of Counting</h2>
-            <p class="date">Published on October 27, 2024</p>
-            <p>Combinatorics is a branch of mathematics focused on counting, arranging, and combining objects. It plays a crucial role in various fields, including computer science, probability theory, and optimization.</p>
-            <a class="read-more" href="./combinatorics.html">Read More</a>
-        </article>
+        camera.position.z = 5;
 
-        <article>
-            <h2>Understanding Trigonometric Identities</h2>
-            <p class="date">Published on October 26, 2024</p>
-            <p>Trigonometric identities are equations involving trigonometric functions that are true for all values of the variable for which both sides of the equation are defined. These identities are essential in simplifying expressions, solving equations, and proving other mathematical concepts.</p>
-            <a class="read-more" href="./trigidentities.html">Read More</a>
-        </article>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 Fun Maths. All rights reserved.</p>
-    </footer>
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script>
 </body>
 </html>
